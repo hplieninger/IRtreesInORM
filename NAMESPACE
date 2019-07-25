@@ -2,5 +2,6 @@
 
 export("%>%")
 export(here)
+export(sim_tree_data)
 importFrom(here,here)
 importFrom(magrittr,"%>%")

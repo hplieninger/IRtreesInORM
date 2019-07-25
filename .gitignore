@@ -25,6 +25,5 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 
-code/simulation/mplus-old
 data/issp15.rda
 misc/

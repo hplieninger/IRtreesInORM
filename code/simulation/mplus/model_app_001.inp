@@ -1,0 +1,38 @@
+Title:      MCN Model;
+Data:       FILE = 'data_APP_N=10000_001.txt';
+Variable:   NAMES = 
+              v_t_1 v_t_2 v_t_3 v_t_4 v_t_5 v_t_6 v_t_7 v_t_8 v_t_9 v_t_10 v_t_11 v_t_12
+              v_t_13 v_t_14 v_t_15 v_t_16 v_t_17 v_t_18 v_t_19 v_t_20 v_t_21 v_t_22
+              v_t_23 v_t_24 v_t_25 v_t_26 v_t_27 v_e_1 v_e_2 v_e_3 v_e_4 v_e_5 v_e_6
+              v_e_7 v_e_8 v_e_9 v_e_10 v_e_11 v_e_12 v_e_13 v_e_14 v_e_15 v_e_16 v_e_17
+              v_e_18 v_e_19 v_e_20 v_e_21 v_e_22 v_e_23 v_e_24 v_e_25 v_e_26 v_e_27 v_m_1
+              v_m_2 v_m_3 v_m_4 v_m_5 v_m_6 v_m_7 v_m_8 v_m_9 v_m_10 v_m_11 v_m_12 v_m_13
+              v_m_14 v_m_15 v_m_16 v_m_17 v_m_18 v_m_19 v_m_20 v_m_21 v_m_22 v_m_23
+              v_m_24 v_m_25 v_m_26 v_m_27;
+              
+            MISSING = *;
+            CATEGORICAL = all;
+            USEVAR = all;
+Analysis:   ALGORITHM = INTEGRATION EM;
+            INTEGRATION = 10;
+            ESTIMATOR = MLR;
+            LINK = probit;
+            !PROCESSORS = 1;
+            !MITERATIONS = 2000;
+            !LOGCRITERION = .001;
+            !RLOGCRITERION = .0001;
+            !MCONVERGENCE = .01;
+            !MUCONVERGENCE = .00001;
+            !CONVERGENCE = .00001;
+            !H1CONVERGENCE = .0001;
+            !MCCONVERGENCE = .1;
+            !RCONVERGENCE = .1;
+            !MIXU = CONVERGENCE;
+
+Model:      Theta1 BY v_t_1-v_t_27@1;
+            Theta2 BY v_e_1-v_e_27@1;
+            Theta3 BY v_m_1-v_m_27@1;
+Savedata:   FILE = model_app_001.fsc;
+            SAVE = FSCORES;
+Output:     STDYX TECH4 TECH8; !residual Tech1 Tech10;
+ 
