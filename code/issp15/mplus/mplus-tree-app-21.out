@@ -1,0 +1,1108 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+02/07/2019   4:28 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+    SLOVENIA
+    IMPROPER MDOEL
+    mplus-tree-app-21
+    #Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
+    Items:        v45 v46 v47
+    pseudoitem1:  - 0 1 0 -
+    pseudoitem2:  1 0 - 0 1
+    pseudoitem3:  0 0 - 1 1
+  DATA:
+  FILE = "mplus-improper-app-01.txt";
+
+  VARIABLE:
+   NAMES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47 rowid v45 v46 v47
+           country;
+   IDVARIABLE = rowid;
+   MISSING=.;
+   CATEGORICAL = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+
+   USEVARIABLES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+
+   !CLASSES ctry (11);
+   !KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20
+   !                   country = 21 country = 22 country = 23 country = 29
+   !                   country = 35 country = 37);
+
+   USEOBSERVATIONS = country == 29;
+
+  ANALYSIS:
+   !TYPE = MIXTURE;
+   ALGORITHM = INTEGRATION EM;
+   STARTS = 10 4;
+   PROCESSORS = 2;
+   ESTIMATOR = MLR;
+   INTEGRATION = 15;
+   MITERATIONS = 1000;
+   !MCONVERGENCE = .01;
+   !LOGCRITERION = .01;
+   !RLOGCRITERION = .00001;
+   LINK = probit;
+
+  MODEL:
+   !%OVERALL%
+    m BY m_v45@1 m_v46@1 m_v47@1;
+    e BY e_v45@1 e_v46@1 e_v47@1;
+    t BY t_v45@1 t_v46@1 t_v47@1;
+
+  OUTPUT:
+  STDYX TECH1 TECH4 TECH8;
+  SAVEDATA:
+  !FILE = mplus-tree-mcn-21.fsc;
+  !SAVE = FSCORES;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SLOVENIA
+IMPROPER MDOEL
+mplus-tree-app-21
+#Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
+Items:        v45 v46 v47
+pseudoitem1:  - 0 1 0 -
+pseudoitem2:  1 0 - 0 1
+pseudoitem3:  0 0 - 1 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         463
+
+Number of dependent variables                                    9
+Number of independent variables                                  0
+Number of continuous latent variables                            3
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   M_V45       M_V46       M_V47       E_V45       E_V46       E_V47
+   T_V45       T_V46       T_V47
+
+Continuous latent variables
+   M           E           T
+
+Variables with special functions
+
+  ID variable           ROWID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                1000
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            10
+  Minimum value for logit thresholds                           -10
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                          EM
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            3
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                         10
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                        PROBIT
+Cholesky                                                        ON
+
+Input data file(s)
+  mplus-improper-app-01.txt
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            27
+     Number of y missing data patterns           0
+     Number of u missing data patterns          27
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              M_V45         M_V46         M_V47         E_V45         E_V46
+              ________      ________      ________      ________      ________
+ M_V45          0.827
+ M_V46          0.691         0.747
+ M_V47          0.603         0.553         0.693
+ E_V45          0.542         0.497         0.490         0.715
+ E_V46          0.646         0.546         0.566         0.609         0.799
+ E_V47          0.607         0.544         0.438         0.540         0.572
+ T_V45          0.542         0.497         0.490         0.715         0.609
+ T_V46          0.646         0.546         0.566         0.609         0.799
+ T_V47          0.607         0.544         0.438         0.540         0.572
+
+
+           Covariance Coverage
+              E_V47         T_V45         T_V46         T_V47
+              ________      ________      ________      ________
+ E_V47          0.745
+ T_V45          0.540         0.715
+ T_V46          0.572         0.609         0.799
+ T_V47          0.745         0.540         0.572         0.745
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    M_V45
+      Category 1    0.655          251.000
+      Category 2    0.345          132.000
+    M_V46
+      Category 1    0.731          253.000
+      Category 2    0.269           93.000
+    M_V47
+      Category 1    0.632          203.000
+      Category 2    0.368          118.000
+    E_V45
+      Category 1    0.758          251.000
+      Category 2    0.242           80.000
+    E_V46
+      Category 1    0.684          253.000
+      Category 2    0.316          117.000
+    E_V47
+      Category 1    0.588          203.000
+      Category 2    0.412          142.000
+    T_V45
+      Category 1    0.215           71.000
+      Category 2    0.785          260.000
+    T_V46
+      Category 1    0.081           30.000
+      Category 2    0.919          340.000
+    T_V47
+      Category 1    0.620          214.000
+      Category 2    0.380          131.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -1708.017  195873           6
+           -1708.017  285380           1
+           -1708.017  939021           8
+           -1708.017  93468            3
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       15
+
+Loglikelihood
+
+          H0 Value                       -1708.017
+          H0 Scaling Correction Factor      0.8917
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    3446.034
+          Bayesian (BIC)                  3508.099
+          Sample-Size Adjusted BIC        3460.493
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes**
+
+          Pearson Chi-Square
+
+          Value                           1695.467
+          Degrees of Freedom                   493
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                            610.526
+          Degrees of Freedom                   493
+          P-Value                           0.0002
+
+** Of the 2744 cells in the frequency table, 3
+   were deleted in the calculation of chi-square due to extreme values.
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                           3120.865
+          Degrees of Freedom                  2206
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                           2007.559
+          Degrees of Freedom                  2206
+          P-Value                           0.9989
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ M        BY
+    M_V45              1.000      0.000    999.000    999.000
+    M_V46              1.000      0.000    999.000    999.000
+    M_V47              1.000      0.000    999.000    999.000
+
+ E        BY
+    E_V45              1.000      0.000    999.000    999.000
+    E_V46              1.000      0.000    999.000    999.000
+    E_V47              1.000      0.000    999.000    999.000
+
+ T        BY
+    T_V45              1.000      0.000    999.000    999.000
+    T_V46              1.000      0.000    999.000    999.000
+    T_V47              1.000      0.000    999.000    999.000
+
+ E        WITH
+    M                  0.526      0.106      4.959      0.000
+
+ T        WITH
+    M                 -0.211      0.090     -2.346      0.019
+    E                  0.031      0.118      0.262      0.793
+
+ Thresholds
+    M_V45$1            0.353      0.075      4.725      0.000
+    M_V46$1            0.594      0.082      7.215      0.000
+    M_V47$1            0.222      0.081      2.724      0.006
+    E_V45$1            0.904      0.111      8.157      0.000
+    E_V46$1            0.588      0.097      6.045      0.000
+    E_V47$1            0.261      0.097      2.689      0.007
+    T_V45$1           -1.123      0.144     -7.783      0.000
+    T_V46$1           -2.115      0.176    -12.034      0.000
+    T_V47$1            0.469      0.114      4.118      0.000
+
+ Variances
+    M                  0.314      0.077      4.085      0.000
+    E                  0.989      0.196      5.046      0.000
+    T                  1.598      0.420      3.806      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ M        BY
+    M_V45              0.489      0.046     10.732      0.000
+    M_V46              0.489      0.046     10.732      0.000
+    M_V47              0.489      0.046     10.732      0.000
+
+ E        BY
+    E_V45              0.705      0.035     20.069      0.000
+    E_V46              0.705      0.035     20.069      0.000
+    E_V47              0.705      0.035     20.069      0.000
+
+ T        BY
+    T_V45              0.784      0.040     19.773      0.000
+    T_V46              0.784      0.040     19.773      0.000
+    T_V47              0.784      0.040     19.773      0.000
+
+ E        WITH
+    M                  0.944      0.034     28.116      0.000
+
+ T        WITH
+    M                 -0.299      0.118     -2.520      0.012
+    E                  0.025      0.094      0.262      0.793
+
+ Thresholds
+    M_V45$1            0.308      0.066      4.649      0.000
+    M_V46$1            0.518      0.073      7.057      0.000
+    M_V47$1            0.193      0.072      2.683      0.007
+    E_V45$1            0.641      0.076      8.394      0.000
+    E_V46$1            0.417      0.068      6.175      0.000
+    E_V47$1            0.185      0.069      2.697      0.007
+    T_V45$1           -0.697      0.077     -9.058      0.000
+    T_V46$1           -1.312      0.097    -13.546      0.000
+    T_V47$1            0.291      0.068      4.296      0.000
+
+ Variances
+    M                  1.000      0.000    999.000    999.000
+    E                  1.000      0.000    999.000    999.000
+    T                  1.000      0.000    999.000    999.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    M_V45              0.239      0.044      5.366      0.000
+    M_V46              0.239      0.044      5.366      0.000
+    M_V47              0.239      0.044      5.366      0.000
+    E_V45              0.497      0.050     10.034      0.000
+    E_V46              0.497      0.050     10.034      0.000
+    E_V47              0.497      0.050     10.034      0.000
+    T_V45              0.615      0.062      9.886      0.000
+    T_V46              0.615      0.062      9.886      0.000
+    T_V47              0.615      0.062      9.886      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.158E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              M_V45$1       M_V46$1       M_V47$1       E_V45$1       E_V46$1
+              ________      ________      ________      ________      ________
+ 1                  7             8             9            10            11
+
+
+           TAU
+              E_V47$1       T_V45$1       T_V46$1       T_V47$1
+              ________      ________      ________      ________
+ 1                 12            13            14            15
+
+
+           NU
+              M_V45         M_V46         M_V47         E_V45         E_V46
+              ________      ________      ________      ________      ________
+ 1                  0             0             0             0             0
+
+
+           NU
+              E_V47         T_V45         T_V46         T_V47
+              ________      ________      ________      ________
+ 1                  0             0             0             0
+
+
+           LAMBDA
+              M             E             T
+              ________      ________      ________
+ M_V45              0             0             0
+ M_V46              0             0             0
+ M_V47              0             0             0
+ E_V45              0             0             0
+ E_V46              0             0             0
+ E_V47              0             0             0
+ T_V45              0             0             0
+ T_V46              0             0             0
+ T_V47              0             0             0
+
+
+           THETA
+              M_V45         M_V46         M_V47         E_V45         E_V46
+              ________      ________      ________      ________      ________
+ M_V45              0
+ M_V46              0             0
+ M_V47              0             0             0
+ E_V45              0             0             0             0
+ E_V46              0             0             0             0             0
+ E_V47              0             0             0             0             0
+ T_V45              0             0             0             0             0
+ T_V46              0             0             0             0             0
+ T_V47              0             0             0             0             0
+
+
+           THETA
+              E_V47         T_V45         T_V46         T_V47
+              ________      ________      ________      ________
+ E_V47              0
+ T_V45              0             0
+ T_V46              0             0             0
+ T_V47              0             0             0             0
+
+
+           ALPHA
+              M             E             T
+              ________      ________      ________
+ 1                  0             0             0
+
+
+           BETA
+              M             E             T
+              ________      ________      ________
+ M                  0             0             0
+ E                  0             0             0
+ T                  0             0             0
+
+
+           PSI
+              M             E             T
+              ________      ________      ________
+ M                  1
+ E                  2             3
+ T                  4             5             6
+
+
+     STARTING VALUES
+
+
+           TAU
+              M_V45$1       M_V46$1       M_V47$1       E_V45$1       E_V46$1
+              ________      ________      ________      ________      ________
+ 1              0.357         0.556         0.301         0.635         0.428
+
+
+           TAU
+              E_V47$1       T_V45$1       T_V46$1       T_V47$1
+              ________      ________      ________      ________
+ 1              0.199        -0.721        -1.349         0.273
+
+
+           NU
+              M_V45         M_V46         M_V47         E_V45         E_V46
+              ________      ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              E_V47         T_V45         T_V46         T_V47
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              M             E             T
+              ________      ________      ________
+ M_V45          1.000         0.000         0.000
+ M_V46          1.000         0.000         0.000
+ M_V47          1.000         0.000         0.000
+ E_V45          0.000         1.000         0.000
+ E_V46          0.000         1.000         0.000
+ E_V47          0.000         1.000         0.000
+ T_V45          0.000         0.000         1.000
+ T_V46          0.000         0.000         1.000
+ T_V47          0.000         0.000         1.000
+
+
+           THETA
+              M_V45         M_V46         M_V47         E_V45         E_V46
+              ________      ________      ________      ________      ________
+ M_V45          1.000
+ M_V46          0.000         1.000
+ M_V47          0.000         0.000         1.000
+ E_V45          0.000         0.000         0.000         1.000
+ E_V46          0.000         0.000         0.000         0.000         1.000
+ E_V47          0.000         0.000         0.000         0.000         0.000
+ T_V45          0.000         0.000         0.000         0.000         0.000
+ T_V46          0.000         0.000         0.000         0.000         0.000
+ T_V47          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              E_V47         T_V45         T_V46         T_V47
+              ________      ________      ________      ________
+ E_V47          1.000
+ T_V45          0.000         1.000
+ T_V46          0.000         0.000         1.000
+ T_V47          0.000         0.000         0.000         1.000
+
+
+           ALPHA
+              M             E             T
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           BETA
+              M             E             T
+              ________      ________      ________
+ M              0.000         0.000         0.000
+ E              0.000         0.000         0.000
+ T              0.000         0.000         0.000
+
+
+           PSI
+              M             E             T
+              ________      ________      ________
+ M              0.050
+ E              0.000         0.050
+ T              0.000         0.000         0.050
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ 1              1.000         1.000         1.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              0.314
+ E              0.526         0.989
+ T             -0.211         0.031         1.598
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              0.077
+ E              0.106         0.196
+ T              0.090         0.118         0.420
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              4.085
+ E              4.959         5.046
+ T             -2.346         0.262         3.806
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              0.000
+ E              0.000         0.000
+ T              0.019         0.793         0.000
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              1.000
+ E              0.944         1.000
+ T             -0.299         0.025         1.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              0.000
+ E              0.034         0.000
+ T              0.118         0.094         0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M            999.000
+ E             28.116       999.000
+ T             -2.520         0.262       999.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              M             E             T
+              ________      ________      ________
+ M              0.000
+ E              0.000         0.000
+ T              0.012         0.793         0.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18025451D+04    0.0000000    0.0000000  EM
+              2 -0.17857282D+04   16.8169361    0.0093296  EM
+              3 -0.17681312D+04   17.5970439    0.0098543  EM
+              4 -0.17507776D+04   17.3536083    0.0098147  EM
+              5 -0.17371649D+04   13.6126909    0.0077752  EM
+              6 -0.17280007D+04    9.1641687    0.0052754  EM
+              7 -0.17223130D+04    5.6876781    0.0032915  EM
+              8 -0.17188666D+04    3.4463827    0.0020010  EM
+              9 -0.17167352D+04    2.1314650    0.0012400  EM
+             10 -0.17153470D+04    1.3881817    0.0008086  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.28464690D+04    0.0000000    0.0000000  EM
+              2 -0.18621326D+04  984.3364793    0.3458097  EM
+              3 -0.17673471D+04   94.7854525    0.0509016  EM
+              4 -0.17347674D+04   32.5796706    0.0184342  EM
+              5 -0.17235282D+04   11.2392442    0.0064788  EM
+              6 -0.17192616D+04    4.2666043    0.0024755  EM
+              7 -0.17172439D+04    2.0176856    0.0011736  EM
+              8 -0.17159901D+04    1.2537741    0.0007301  EM
+              9 -0.17150353D+04    0.9548340    0.0005564  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31159203D+04    0.0000000    0.0000000  EM
+              2 -0.21564732D+04  959.4471183    0.3079177  EM
+              3 -0.18942715D+04  262.2016949    0.1215882  EM
+              4 -0.18102525D+04   84.0190465    0.0443543  EM
+              5 -0.17731065D+04   37.1460175    0.0205198  EM
+              6 -0.17533174D+04   19.7891145    0.0111607  EM
+              7 -0.17411958D+04   12.1215956    0.0069135  EM
+              8 -0.17326024D+04    8.5933725    0.0049353  EM
+              9 -0.17263056D+04    6.2968110    0.0036343  EM
+             10 -0.17219605D+04    4.3450593    0.0025170  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.27631207D+04    0.0000000    0.0000000  EM
+              2 -0.19385383D+04  824.5824739    0.2984243  EM
+              3 -0.18138123D+04  124.7260103    0.0643402  EM
+              4 -0.17551313D+04   58.6809508    0.0323523  EM
+              5 -0.17303966D+04   24.7346705    0.0140928  EM
+              6 -0.17206374D+04    9.7592246    0.0056399  EM
+              7 -0.17165862D+04    4.0512099    0.0023545  EM
+              8 -0.17147030D+04    1.8831956    0.0010971  EM
+              9 -0.17136788D+04    1.0242116    0.0005973  EM
+             10 -0.17130162D+04    0.6625846    0.0003866  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.29532681D+04    0.0000000    0.0000000  EM
+              2 -0.20386683D+04  914.5997395    0.3096907  EM
+              3 -0.18458530D+04  192.8153016    0.0945790  EM
+              4 -0.17760908D+04   69.7622219    0.0377940  EM
+              5 -0.17493928D+04   26.6980285    0.0150319  EM
+              6 -0.17377452D+04   11.6475735    0.0066581  EM
+              7 -0.17319383D+04    5.8069456    0.0033417  EM
+              8 -0.17284671D+04    3.4712049    0.0020042  EM
+              9 -0.17259630D+04    2.5040834    0.0014487  EM
+             10 -0.17239128D+04    2.0501304    0.0011878  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31218228D+04    0.0000000    0.0000000  EM
+              2 -0.19763123D+04 1145.5104568    0.3669364  EM
+              3 -0.18114494D+04  164.8629527    0.0834195  EM
+              4 -0.17730720D+04   38.3773666    0.0211860  EM
+              5 -0.17564314D+04   16.6405865    0.0093852  EM
+              6 -0.17484962D+04    7.9352037    0.0045178  EM
+              7 -0.17447359D+04    3.7603283    0.0021506  EM
+              8 -0.17429380D+04    1.7979157    0.0010305  EM
+              9 -0.17420254D+04    0.9125974    0.0005236  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.27631207D+04    0.0000000    0.0000000  EM
+              2 -0.19385383D+04  824.5824739    0.2984243  EM
+              3 -0.18138123D+04  124.7260103    0.0643402  EM
+              4 -0.17551313D+04   58.6809508    0.0323523  EM
+              5 -0.17303966D+04   24.7346705    0.0140928  EM
+              6 -0.17206374D+04    9.7592246    0.0056399  EM
+              7 -0.17165862D+04    4.0512099    0.0023545  EM
+              8 -0.17147030D+04    1.8831956    0.0010971  EM
+              9 -0.17136788D+04    1.0242116    0.0005973  EM
+             10 -0.17130162D+04    0.6625846    0.0003866  EM
+             11 -0.17125202D+04    0.4960177    0.0002896  EM
+             12 -0.17121117D+04    0.4085091    0.0002385  EM
+             13 -0.17117572D+04    0.3544799    0.0002070  EM
+             14 -0.17114416D+04    0.3156035    0.0001844  EM
+             15 -0.17111573D+04    0.2843224    0.0001661  EM
+             16 -0.17108998D+04    0.2574506    0.0001505  EM
+             17 -0.17106663D+04    0.2335564    0.0001365  EM
+             18 -0.17104543D+04    0.2119677    0.0001239  EM
+             19 -0.17102620D+04    0.1923271    0.0001124  EM
+             20 -0.17100876D+04    0.1744227    0.0001020  EM
+             21 -0.17099294D+04    0.1581061    0.0000925  EM
+             22 -0.17097862D+04    0.1432393    0.0000838  EM
+             23 -0.17096565D+04    0.1297167    0.0000759  EM
+             24 -0.17095391D+04    0.1174344    0.0000687  EM
+             25 -0.17094328D+04    0.1062951    0.0000622  EM
+             26 -0.17093366D+04    0.0962050    0.0000563  EM
+             27 -0.17092495D+04    0.0870788    0.0000509  EM
+             28 -0.17091706D+04    0.0788321    0.0000461  EM
+             29 -0.17090993D+04    0.0713893    0.0000418  EM
+             30 -0.17090346D+04    0.0646778    0.0000378  EM
+             31 -0.17089759D+04    0.0586325    0.0000343  EM
+             32 -0.17089228D+04    0.0531898    0.0000311  EM
+             33 -0.17088745D+04    0.0482966    0.0000283  EM
+             34 -0.17088306D+04    0.0438990    0.0000257  EM
+             35 -0.17087906D+04    0.0399472    0.0000234  EM
+             36 -0.17087542D+04    0.0363992    0.0000213  EM
+             37 -0.17087210D+04    0.0332145    0.0000194  EM
+             38 -0.17086906D+04    0.0303597    0.0000178  EM
+             39 -0.17086628D+04    0.0277966    0.0000163  EM
+             40 -0.17086374D+04    0.0254941    0.0000149  EM
+             41 -0.17086139D+04    0.0234351    0.0000137  EM
+             42 -0.17085923D+04    0.0215861    0.0000126  EM
+             43 -0.17085724D+04    0.0199271    0.0000117  EM
+             44 -0.17085540D+04    0.0184406    0.0000108  EM
+             45 -0.17085369D+04    0.0171044    0.0000100  EM
+             46 -0.17085210D+04    0.0159059    0.0000093  EM
+             47 -0.17085061D+04    0.0148294    0.0000087  EM
+             48 -0.17084923D+04    0.0138617    0.0000081  EM
+             49 -0.17084793D+04    0.0129910    0.0000076  EM
+             50 -0.17084671D+04    0.0122077    0.0000071  EM
+             51 -0.17084556D+04    0.0115009    0.0000067  EM
+             52 -0.17084447D+04    0.0108648    0.0000064  EM
+             53 -0.17084344D+04    0.0102899    0.0000060  EM
+             54 -0.17084246D+04    0.0097697    0.0000057  EM
+             55 -0.17084153D+04    0.0092979    0.0000054  EM
+             56 -0.17084065D+04    0.0088712    0.0000052  EM
+             57 -0.17083980D+04    0.0084837    0.0000050  EM
+             58 -0.17083899D+04    0.0081301    0.0000048  EM
+             59 -0.17083820D+04    0.0078084    0.0000046  EM
+             60 -0.17083745D+04    0.0075142    0.0000044  EM
+             61 -0.17083673D+04    0.0072439    0.0000042  EM
+             62 -0.17083603D+04    0.0069968    0.0000041  EM
+             63 -0.17083535D+04    0.0067695    0.0000040  EM
+             64 -0.17083470D+04    0.0065593    0.0000038  EM
+             65 -0.17083406D+04    0.0063650    0.0000037  EM
+             66 -0.17083344D+04    0.0061842    0.0000036  EM
+             67 -0.17083284D+04    0.0060169    0.0000035  EM
+             68 -0.17083225D+04    0.0058608    0.0000034  EM
+             69 -0.17083168D+04    0.0057155    0.0000033  EM
+             70 -0.17083112D+04    0.0055782    0.0000033  EM
+             71 -0.17083058D+04    0.0054488    0.0000032  EM
+             72 -0.17083005D+04    0.0053266    0.0000031  EM
+             73 -0.17082953D+04    0.0052129    0.0000031  EM
+             74 -0.17082901D+04    0.0051041    0.0000030  EM
+             75 -0.17082851D+04    0.0050005    0.0000029  EM
+             76 -0.17082802D+04    0.0049026    0.0000029  EM
+             77 -0.17082754D+04    0.0048083    0.0000028  EM
+             78 -0.17082707D+04    0.0047187    0.0000028  EM
+             79 -0.17082661D+04    0.0046323    0.0000027  EM
+             80 -0.17082615D+04    0.0045482    0.0000027  EM
+             81 -0.17082571D+04    0.0044697    0.0000026  EM
+             82 -0.17082527D+04    0.0043930    0.0000026  EM
+             83 -0.17082484D+04    0.0043188    0.0000025  EM
+             84 -0.17082441D+04    0.0042468    0.0000025  EM
+             85 -0.17082399D+04    0.0041772    0.0000024  EM
+             86 -0.17082358D+04    0.0041097    0.0000024  EM
+             87 -0.17082318D+04    0.0040437    0.0000024  EM
+             88 -0.17082278D+04    0.0039801    0.0000023  EM
+             89 -0.17082239D+04    0.0039175    0.0000023  EM
+             90 -0.17082200D+04    0.0038568    0.0000023  EM
+             91 -0.17082162D+04    0.0037978    0.0000022  EM
+             92 -0.17082125D+04    0.0037398    0.0000022  EM
+             93 -0.17082088D+04    0.0036831    0.0000022  EM
+             94 -0.17082052D+04    0.0036277    0.0000021  EM
+             95 -0.17082016D+04    0.0035736    0.0000021  EM
+             96 -0.17081981D+04    0.0035203    0.0000021  EM
+             97 -0.17081946D+04    0.0034686    0.0000020  EM
+             98 -0.17081912D+04    0.0034180    0.0000020  EM
+             99 -0.17081878D+04    0.0033679    0.0000020  EM
+            100 -0.17081845D+04    0.0033182    0.0000019  EM
+            101 -0.17081812D+04    0.0032706    0.0000019  EM
+            102 -0.17081780D+04    0.0032232    0.0000019  EM
+            103 -0.17081748D+04    0.0031766    0.0000019  EM
+            104 -0.17081717D+04    0.0031312    0.0000018  EM
+            105 -0.17081686D+04    0.0030864    0.0000018  EM
+            106 -0.17081656D+04    0.0030424    0.0000018  EM
+            107 -0.17081626D+04    0.0029994    0.0000018  EM
+            108 -0.17081596D+04    0.0029563    0.0000017  EM
+            109 -0.17081567D+04    0.0029145    0.0000017  EM
+            110 -0.17081538D+04    0.0028743    0.0000017  EM
+            111 -0.17081510D+04    0.0028333    0.0000017  EM
+            112 -0.17081482D+04    0.0027928    0.0000016  EM
+            113 -0.17081455D+04    0.0027535    0.0000016  EM
+            114 -0.17081427D+04    0.0027151    0.0000016  EM
+            115 -0.17081401D+04    0.0026772    0.0000016  EM
+            116 -0.17081374D+04    0.0026394    0.0000015  EM
+            117 -0.17081348D+04    0.0026026    0.0000015  EM
+            118 -0.17081323D+04    0.0025665    0.0000015  EM
+            119 -0.17081297D+04    0.0025311    0.0000015  EM
+            120 -0.17081272D+04    0.0024959    0.0000015  EM
+            121 -0.17081248D+04    0.0024611    0.0000014  EM
+            122 -0.17081223D+04    0.0024271    0.0000014  EM
+            123 -0.17081199D+04    0.0023936    0.0000014  EM
+            124 -0.17081176D+04    0.0023604    0.0000014  EM
+            125 -0.17081153D+04    0.0023280    0.0000014  EM
+            126 -0.17081130D+04    0.0022958    0.0000013  EM
+            127 -0.17081107D+04    0.0022642    0.0000013  EM
+            128 -0.17081085D+04    0.0022334    0.0000013  EM
+            129 -0.17081063D+04    0.0022024    0.0000013  EM
+            130 -0.17081041D+04    0.0021724    0.0000013  EM
+            131 -0.17081019D+04    0.0021425    0.0000013  EM
+            132 -0.17080998D+04    0.0021132    0.0000012  EM
+            133 -0.17080977D+04    0.0020844    0.0000012  EM
+            134 -0.17080957D+04    0.0020559    0.0000012  EM
+            135 -0.17080937D+04    0.0020271    0.0000012  EM
+            136 -0.17080917D+04    0.0020002    0.0000012  EM
+            137 -0.17080897D+04    0.0019729    0.0000012  EM
+            138 -0.17080877D+04    0.0019463    0.0000011  EM
+            139 -0.17080858D+04    0.0019198    0.0000011  EM
+            140 -0.17080839D+04    0.0018938    0.0000011  EM
+            141 -0.17080821D+04    0.0018682    0.0000011  EM
+            142 -0.17080802D+04    0.0018429    0.0000011  EM
+            143 -0.17080784D+04    0.0018177    0.0000011  EM
+            144 -0.17080766D+04    0.0017932    0.0000010  EM
+            145 -0.17080748D+04    0.0017688    0.0000010  EM
+            146 -0.17080731D+04    0.0017451    0.0000010  EM
+            147 -0.17080714D+04    0.0017214    0.0000010  EM
+            148 -0.17080697D+04    0.0016982    0.0000010  EM
+            149 -0.17080680D+04    0.0016753    0.0000010  EM
+            150 -0.17080663D+04    0.0016532    0.0000010  EM
+            151 -0.17080647D+04    0.0016309    0.0000010  EM
+            152 -0.17080631D+04    0.0016088    0.0000009  EM
+            153 -0.17080615D+04    0.0015873    0.0000009  EM
+            154 -0.17080600D+04    0.0015661    0.0000009  EM
+            155 -0.17080584D+04    0.0015450    0.0000009  EM
+            156 -0.17080569D+04    0.0015243    0.0000009  EM
+            157 -0.17080554D+04    0.0015041    0.0000009  EM
+            158 -0.17080539D+04    0.0014842    0.0000009  EM
+            159 -0.17080524D+04    0.0014643    0.0000009  EM
+            160 -0.17080510D+04    0.0014442    0.0000008  EM
+            161 -0.17080496D+04    0.0014255    0.0000008  EM
+            162 -0.17080482D+04    0.0014066    0.0000008  EM
+            163 -0.17080468D+04    0.0013877    0.0000008  EM
+            164 -0.17080454D+04    0.0013690    0.0000008  EM
+            165 -0.17080440D+04    0.0013510    0.0000008  EM
+            166 -0.17080427D+04    0.0013331    0.0000008  EM
+            167 -0.17080414D+04    0.0013155    0.0000008  EM
+            168 -0.17080401D+04    0.0012979    0.0000008  EM
+            169 -0.17080388D+04    0.0012805    0.0000007  EM
+            170 -0.17080376D+04    0.0012639    0.0000007  EM
+            171 -0.17080363D+04    0.0012471    0.0000007  EM
+            172 -0.17080351D+04    0.0012308    0.0000007  EM
+            173 -0.17080339D+04    0.0012143    0.0000007  EM
+            174 -0.17080327D+04    0.0011983    0.0000007  EM
+            175 -0.17080315D+04    0.0011827    0.0000007  EM
+            176 -0.17080303D+04    0.0011668    0.0000007  EM
+            177 -0.17080292D+04    0.0011515    0.0000007  EM
+            178 -0.17080280D+04    0.0011363    0.0000007  EM
+            179 -0.17080269D+04    0.0011216    0.0000007  EM
+            180 -0.17080258D+04    0.0011068    0.0000006  EM
+            181 -0.17080247D+04    0.0010920    0.0000006  EM
+            182 -0.17080236D+04    0.0010780    0.0000006  EM
+            183 -0.17080226D+04    0.0010638    0.0000006  EM
+            184 -0.17080215D+04    0.0010497    0.0000006  EM
+            185 -0.17080205D+04    0.0010361    0.0000006  EM
+            186 -0.17080195D+04    0.0010224    0.0000006  EM
+            187 -0.17080185D+04    0.0010091    0.0000006  EM
+            188 -0.17080175D+04    0.0009958    0.0000006  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.28464690D+04    0.0000000    0.0000000  EM
+              2 -0.18621326D+04  984.3364793    0.3458097  EM
+              3 -0.17673471D+04   94.7854525    0.0509016  EM
+              4 -0.17347674D+04   32.5796706    0.0184342  EM
+              5 -0.17235282D+04   11.2392442    0.0064788  EM
+              6 -0.17192616D+04    4.2666043    0.0024755  EM
+              7 -0.17172439D+04    2.0176856    0.0011736  EM
+              8 -0.17159901D+04    1.2537741    0.0007301  EM
+              9 -0.17150353D+04    0.9548340    0.0005564  EM
+             10 -0.17142306D+04    0.8046494    0.0004692  EM
+             11 -0.17135257D+04    0.7049799    0.0004113  EM
+             12 -0.17129005D+04    0.6251253    0.0003648  EM
+             13 -0.17123450D+04    0.5554869    0.0003243  EM
+             14 -0.17118520D+04    0.4930332    0.0002879  EM
+             15 -0.17114153D+04    0.4367291    0.0002551  EM
+             16 -0.17110292D+04    0.3861036    0.0002256  EM
+             17 -0.17106884D+04    0.3407927    0.0001992  EM
+             18 -0.17103880D+04    0.3004218    0.0001756  EM
+             19 -0.17101234D+04    0.2645941    0.0001547  EM
+             20 -0.17098905D+04    0.2328977    0.0001362  EM
+             21 -0.17096855D+04    0.2049394    0.0001199  EM
+             22 -0.17095052D+04    0.1803186    0.0001055  EM
+             23 -0.17093465D+04    0.1586673    0.0000928  EM
+             24 -0.17092069D+04    0.1396559    0.0000817  EM
+             25 -0.17090839D+04    0.1229713    0.0000719  EM
+             26 -0.17089756D+04    0.1083350    0.0000634  EM
+             27 -0.17088801D+04    0.0954995    0.0000559  EM
+             28 -0.17087958D+04    0.0842474    0.0000493  EM
+             29 -0.17087215D+04    0.0743798    0.0000435  EM
+             30 -0.17086557D+04    0.0657275    0.0000385  EM
+             31 -0.17085976D+04    0.0581328    0.0000340  EM
+             32 -0.17085461D+04    0.0514743    0.0000301  EM
+             33 -0.17085005D+04    0.0456277    0.0000267  EM
+             34 -0.17084600D+04    0.0404927    0.0000237  EM
+             35 -0.17084240D+04    0.0359813    0.0000211  EM
+             36 -0.17083920D+04    0.0320168    0.0000187  EM
+             37 -0.17083635D+04    0.0285302    0.0000167  EM
+             38 -0.17083380D+04    0.0254601    0.0000149  EM
+             39 -0.17083153D+04    0.0227589    0.0000133  EM
+             40 -0.17082949D+04    0.0203809    0.0000119  EM
+             41 -0.17082766D+04    0.0182837    0.0000107  EM
+             42 -0.17082602D+04    0.0164341    0.0000096  EM
+             43 -0.17082454D+04    0.0148023    0.0000087  EM
+             44 -0.17082320D+04    0.0133605    0.0000078  EM
+             45 -0.17082199D+04    0.0120858    0.0000071  EM
+             46 -0.17082090D+04    0.0109586    0.0000064  EM
+             47 -0.17081990D+04    0.0099646    0.0000058  EM
+             48 -0.17081899D+04    0.0090813    0.0000053  EM
+             49 -0.17081816D+04    0.0082993    0.0000049  EM
+             50 -0.17081740D+04    0.0076051    0.0000045  EM
+             51 -0.17081670D+04    0.0069884    0.0000041  EM
+             52 -0.17081606D+04    0.0064411    0.0000038  EM
+             53 -0.17081546D+04    0.0059540    0.0000035  EM
+             54 -0.17081491D+04    0.0055203    0.0000032  EM
+             55 -0.17081440D+04    0.0051337    0.0000030  EM
+             56 -0.17081392D+04    0.0047893    0.0000028  EM
+             57 -0.17081347D+04    0.0044806    0.0000026  EM
+             58 -0.17081305D+04    0.0042059    0.0000025  EM
+             59 -0.17081265D+04    0.0039585    0.0000023  EM
+             60 -0.17081228D+04    0.0037368    0.0000022  EM
+             61 -0.17081193D+04    0.0035377    0.0000021  EM
+             62 -0.17081159D+04    0.0033585    0.0000020  EM
+             63 -0.17081127D+04    0.0031967    0.0000019  EM
+             64 -0.17081097D+04    0.0030506    0.0000018  EM
+             65 -0.17081067D+04    0.0029186    0.0000017  EM
+             66 -0.17081039D+04    0.0027989    0.0000016  EM
+             67 -0.17081012D+04    0.0026892    0.0000016  EM
+             68 -0.17080987D+04    0.0025902    0.0000015  EM
+             69 -0.17080962D+04    0.0024990    0.0000015  EM
+             70 -0.17080937D+04    0.0024160    0.0000014  EM
+             71 -0.17080914D+04    0.0023395    0.0000014  EM
+             72 -0.17080891D+04    0.0022693    0.0000013  EM
+             73 -0.17080869D+04    0.0022044    0.0000013  EM
+             74 -0.17080848D+04    0.0021444    0.0000013  EM
+             75 -0.17080827D+04    0.0020882    0.0000012  EM
+             76 -0.17080807D+04    0.0020365    0.0000012  EM
+             77 -0.17080787D+04    0.0019878    0.0000012  EM
+             78 -0.17080767D+04    0.0019423    0.0000011  EM
+             79 -0.17080748D+04    0.0018997    0.0000011  EM
+             80 -0.17080730D+04    0.0018594    0.0000011  EM
+             81 -0.17080711D+04    0.0018213    0.0000011  EM
+             82 -0.17080694D+04    0.0017862    0.0000010  EM
+             83 -0.17080676D+04    0.0017510    0.0000010  EM
+             84 -0.17080659D+04    0.0017184    0.0000010  EM
+             85 -0.17080642D+04    0.0016875    0.0000010  EM
+             86 -0.17080625D+04    0.0016567    0.0000010  EM
+             87 -0.17080609D+04    0.0016293    0.0000010  EM
+             88 -0.17080593D+04    0.0016019    0.0000009  EM
+             89 -0.17080577D+04    0.0015755    0.0000009  EM
+             90 -0.17080562D+04    0.0015501    0.0000009  EM
+             91 -0.17080547D+04    0.0015254    0.0000009  EM
+             92 -0.17080532D+04    0.0015015    0.0000009  EM
+             93 -0.17080517D+04    0.0014783    0.0000009  EM
+             94 -0.17080502D+04    0.0014560    0.0000009  EM
+             95 -0.17080488D+04    0.0014341    0.0000008  EM
+             96 -0.17080474D+04    0.0014129    0.0000008  EM
+             97 -0.17080460D+04    0.0013923    0.0000008  EM
+             98 -0.17080446D+04    0.0013721    0.0000008  EM
+             99 -0.17080433D+04    0.0013525    0.0000008  EM
+            100 -0.17080419D+04    0.0013333    0.0000008  EM
+            101 -0.17080406D+04    0.0013144    0.0000008  EM
+            102 -0.17080393D+04    0.0012960    0.0000008  EM
+            103 -0.17080380D+04    0.0012777    0.0000007  EM
+            104 -0.17080368D+04    0.0012602    0.0000007  EM
+            105 -0.17080355D+04    0.0012423    0.0000007  EM
+            106 -0.17080343D+04    0.0012257    0.0000007  EM
+            107 -0.17080331D+04    0.0012087    0.0000007  EM
+            108 -0.17080319D+04    0.0011924    0.0000007  EM
+            109 -0.17080307D+04    0.0011763    0.0000007  EM
+            110 -0.17080296D+04    0.0011599    0.0000007  EM
+            111 -0.17080284D+04    0.0011447    0.0000007  EM
+            112 -0.17080273D+04    0.0011294    0.0000007  EM
+            113 -0.17080262D+04    0.0011143    0.0000007  EM
+            114 -0.17080251D+04    0.0010992    0.0000006  EM
+            115 -0.17080240D+04    0.0010847    0.0000006  EM
+            116 -0.17080229D+04    0.0010705    0.0000006  EM
+            117 -0.17080219D+04    0.0010559    0.0000006  EM
+            118 -0.17080208D+04    0.0010420    0.0000006  EM
+            119 -0.17080198D+04    0.0010283    0.0000006  EM
+            120 -0.17080188D+04    0.0010145    0.0000006  EM
+            121 -0.17080178D+04    0.0010012    0.0000006  EM
+            122 -0.17080168D+04    0.0009880    0.0000006  EM
+
+
+     Beginning Time:  16:28:35
+        Ending Time:  16:30:12
+       Elapsed Time:  00:01:37
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

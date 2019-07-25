@@ -37,5 +37,6 @@ Suggests:
     MBESS,
     extrafont,
     stringr,
-    knitr
+    knitr,
+    fs
 RoxygenNote: 6.1.1

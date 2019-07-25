@@ -1,0 +1,703 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+02/07/2019   4:36 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+    Tree Model
+    mplus-tree-boeck-01
+    #Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
+    Items:        v45 v46 v47
+    pseudoitem1:  - 0 1 0 -
+    pseudoitem2:  1 0 0 0 1
+    pseudoitem3:  0 0 - 1 1
+  DATA:
+  FILE = "mplus-tree-mcn-01.txt";
+
+  VARIABLE:
+   NAMES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47 rowid v45 v46 v47
+           country;
+   IDVARIABLE = rowid;
+   MISSING=.;
+   CATEGORICAL = v45 v46 v47;
+
+   USEVARIABLES = v45 v46 v47;
+
+   !CLASSES ctry (11);
+   !KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20
+   !                   country = 21 country = 22 country = 23 country = 29
+   !                   country = 35 country = 37);
+
+   USEOBSERVATIONS = country == 37;
+
+  ANALYSIS:
+   !TYPE = MIXTURE;
+   ALGORITHM = INTEGRATION EM;
+   STARTS = 10 4;
+   PROCESSORS = 2;
+   ESTIMATOR = MLR;
+   INTEGRATION = 15;
+   MITERATIONS = 1000;
+   !MCONVERGENCE = .01;
+   !LOGCRITERION = .01;
+   !RLOGCRITERION = .00001;
+   LINK = probit;
+
+  MODEL:
+
+    t BY v45@1 v46@1 v47@1;
+
+  OUTPUT:
+  STDYX TECH1 TECH4 TECH8;
+  SAVEDATA:
+  FILE = mplus-grm-11.fsc;
+  SAVE = FSCORES;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Tree Model
+mplus-tree-boeck-01
+#Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
+Items:        v45 v46 v47
+pseudoitem1:  - 0 1 0 -
+pseudoitem2:  1 0 0 0 1
+pseudoitem3:  0 0 - 1 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         382
+
+Number of dependent variables                                    3
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   V45         V46         V47
+
+Continuous latent variables
+   T
+
+Variables with special functions
+
+  ID variable           ROWID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                1000
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            10
+  Minimum value for logit thresholds                           -10
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                          EM
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                         10
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                        PROBIT
+Cholesky                                                        ON
+
+Input data file(s)
+  mplus-tree-mcn-01.txt
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    V45
+      Category 1    0.113           43.000
+      Category 2    0.055           21.000
+      Category 3    0.052           20.000
+      Category 4    0.207           79.000
+      Category 5    0.573          219.000
+    V46
+      Category 1    0.058           22.000
+      Category 2    0.039           15.000
+      Category 3    0.042           16.000
+      Category 4    0.207           79.000
+      Category 5    0.654          250.000
+    V47
+      Category 1    0.372          142.000
+      Category 2    0.115           44.000
+      Category 3    0.060           23.000
+      Category 4    0.094           36.000
+      Category 5    0.359          137.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -1333.844  608496           4
+           -1333.844  253358           2
+           -1333.844  127215           9
+           -1333.844  195873           6
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+          H0 Value                       -1333.844
+          H0 Scaling Correction Factor      1.0204
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    2693.688
+          Bayesian (BIC)                  2744.979
+          Sample-Size Adjusted BIC        2703.732
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                            435.871
+          Degrees of Freedom                   111
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                            301.622
+          Degrees of Freedom                   111
+          P-Value                           0.0000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ T        BY
+    V45                1.000      0.000    999.000    999.000
+    V46                1.000      0.000    999.000    999.000
+    V47                1.000      0.000    999.000    999.000
+
+ Thresholds
+    V45$1             -1.585      0.118    -13.416      0.000
+    V45$2             -1.266      0.107    -11.887      0.000
+    V45$3             -1.020      0.098    -10.429      0.000
+    V45$4             -0.246      0.084     -2.919      0.004
+    V46$1             -2.034      0.151    -13.459      0.000
+    V46$2             -1.696      0.126    -13.413      0.000
+    V46$3             -1.426      0.113    -12.669      0.000
+    V46$4             -0.529      0.087     -6.097      0.000
+    V47$1             -0.429      0.086     -4.990      0.000
+    V47$2             -0.077      0.082     -0.933      0.351
+    V47$3              0.112      0.081      1.379      0.168
+    V47$4              0.430      0.083      5.206      0.000
+
+ Variances
+    T                  0.677      0.134      5.062      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ T        BY
+    V45                0.635      0.037     16.976      0.000
+    V46                0.635      0.037     16.976      0.000
+    V47                0.635      0.037     16.976      0.000
+
+ Thresholds
+    V45$1             -1.224      0.085    -14.456      0.000
+    V45$2             -0.978      0.077    -12.739      0.000
+    V45$3             -0.788      0.072    -10.969      0.000
+    V45$4             -0.190      0.065     -2.942      0.003
+    V46$1             -1.571      0.102    -15.394      0.000
+    V46$2             -1.309      0.087    -14.980      0.000
+    V46$3             -1.101      0.079    -13.882      0.000
+    V46$4             -0.408      0.066     -6.211      0.000
+    V47$1             -0.331      0.064     -5.170      0.000
+    V47$2             -0.059      0.063     -0.938      0.348
+    V47$3              0.087      0.063      1.369      0.171
+    V47$4              0.332      0.065      5.091      0.000
+
+ Variances
+    T                  1.000      0.000    999.000    999.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    V45                0.404      0.048      8.488      0.000
+    V46                0.404      0.048      8.488      0.000
+    V47                0.404      0.048      8.488      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.106E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              V45$1         V45$2         V45$3         V45$4         V46$1
+              ________      ________      ________      ________      ________
+ 1                  2             3             4             5             6
+
+
+           TAU
+              V46$2         V46$3         V46$4         V47$1         V47$2
+              ________      ________      ________      ________      ________
+ 1                  7             8             9            10            11
+
+
+           TAU
+              V47$3         V47$4
+              ________      ________
+ 1                 12            13
+
+
+           NU
+              V45           V46           V47
+              ________      ________      ________
+ 1                  0             0             0
+
+
+           LAMBDA
+              T
+              ________
+ V45                0
+ V46                0
+ V47                0
+
+
+           THETA
+              V45           V46           V47
+              ________      ________      ________
+ V45                0
+ V46                0             0
+ V47                0             0             0
+
+
+           ALPHA
+              T
+              ________
+ 1                  0
+
+
+           BETA
+              T
+              ________
+ T                  0
+
+
+           PSI
+              T
+              ________
+ T                  1
+
+
+     STARTING VALUES
+
+
+           TAU
+              V45$1         V45$2         V45$3         V45$4         V46$1
+              ________      ________      ________      ________      ________
+ 1             -1.147        -0.891        -0.703        -0.164        -1.553
+
+
+           TAU
+              V46$2         V46$3         V46$4         V47$1         V47$2
+              ________      ________      ________      ________      ________
+ 1             -1.240        -1.014        -0.355        -0.292        -0.029
+
+
+           TAU
+              V47$3         V47$4
+              ________      ________
+ 1              0.105         0.323
+
+
+           NU
+              V45           V46           V47
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           LAMBDA
+              T
+              ________
+ V45            1.000
+ V46            1.000
+ V47            1.000
+
+
+           THETA
+              V45           V46           V47
+              ________      ________      ________
+ V45            1.000
+ V46            0.000         1.000
+ V47            0.000         0.000         1.000
+
+
+           ALPHA
+              T
+              ________
+ 1              0.000
+
+
+           BETA
+              T
+              ________
+ T              0.000
+
+
+           PSI
+              T
+              ________
+ T              0.050
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T
+              ________
+ 1              0.000
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T
+              ________
+ 1              0.000
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T
+              ________
+ 1              0.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T
+              ________
+ 1              1.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              0.677
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              0.134
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              5.062
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              0.000
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              1.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T            999.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T
+              ________
+ T              0.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.13713798D+04    0.0000000    0.0000000  EM
+              2 -0.13600841D+04   11.2956683    0.0082367  EM
+              3 -0.13504154D+04    9.6687677    0.0071089  EM
+              4 -0.13427539D+04    7.6614269    0.0056734  EM
+              5 -0.13381209D+04    4.6330882    0.0034504  EM
+              6 -0.13357617D+04    2.3591690    0.0017630  EM
+              7 -0.13346713D+04    1.0903504    0.0008163  EM
+              8 -0.13341933D+04    0.4780846    0.0003582  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18510816D+04    0.0000000    0.0000000  EM
+              2 -0.14944047D+04  356.6769156    0.1926857  EM
+              3 -0.14033616D+04   91.0430870    0.0609226  EM
+              4 -0.13575075D+04   45.8540782    0.0326745  EM
+              5 -0.13402776D+04   17.2298918    0.0126923  EM
+              6 -0.13351906D+04    5.0870920    0.0037956  EM
+              7 -0.13340936D+04    1.0969525    0.0008216  EM
+              8 -0.13339269D+04    0.1666862    0.0001249  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.21894537D+04    0.0000000    0.0000000  EM
+              2 -0.14281414D+04  761.3122331    0.3477179  EM
+              3 -0.13795901D+04   48.5513097    0.0339961  EM
+              4 -0.13604085D+04   19.1815917    0.0139038  EM
+              5 -0.13492221D+04   11.1864201    0.0082228  EM
+              6 -0.13411905D+04    8.0316043    0.0059528  EM
+              7 -0.13362076D+04    4.9828592    0.0037153  EM
+              8 -0.13342051D+04    2.0025298    0.0014987  EM
+              9 -0.13338668D+04    0.3382831    0.0002535  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.16492809D+04    0.0000000    0.0000000  EM
+              2 -0.13828016D+04  266.4793802    0.1615731  EM
+              3 -0.13466878D+04   36.1137804    0.0261164  EM
+              4 -0.13367284D+04    9.9593762    0.0073955  EM
+              5 -0.13345545D+04    2.1739345    0.0016263  EM
+              6 -0.13340913D+04    0.4631634    0.0003471  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18843425D+04    0.0000000    0.0000000  EM
+              2 -0.15557254D+04  328.6171840    0.1743935  EM
+              3 -0.14959913D+04   59.7340746    0.0383963  EM
+              4 -0.14264064D+04   69.5848965    0.0465142  EM
+              5 -0.13791447D+04   47.2617154    0.0331334  EM
+              6 -0.13512539D+04   27.8907618    0.0202232  EM
+              7 -0.13382894D+04   12.9645496    0.0095945  EM
+              8 -0.13343686D+04    3.9207550    0.0029297  EM
+              9 -0.13338895D+04    0.4790849    0.0003590  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.30557860D+04    0.0000000    0.0000000  EM
+              2 -0.16464539D+04 1409.3321140    0.4612012  EM
+              3 -0.14971843D+04  149.2695994    0.0906613  EM
+              4 -0.14287023D+04   68.4819666    0.0457405  EM
+              5 -0.13836005D+04   45.1017835    0.0315684  EM
+              6 -0.13548545D+04   28.7459951    0.0207762  EM
+              7 -0.13410032D+04   13.8512764    0.0102234  EM
+              8 -0.13365132D+04    4.4900930    0.0033483  EM
+              9 -0.13349806D+04    1.5325860    0.0011467  EM
+             10 -0.13343265D+04    0.6541135    0.0004900  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.21894537D+04    0.0000000    0.0000000  EM
+              2 -0.14281414D+04  761.3122331    0.3477179  EM
+              3 -0.13795901D+04   48.5513097    0.0339961  EM
+              4 -0.13604085D+04   19.1815917    0.0139038  EM
+              5 -0.13492221D+04   11.1864201    0.0082228  EM
+              6 -0.13411905D+04    8.0316043    0.0059528  EM
+              7 -0.13362076D+04    4.9828592    0.0037153  EM
+              8 -0.13342051D+04    2.0025298    0.0014987  EM
+              9 -0.13338668D+04    0.3382831    0.0002535  EM
+             10 -0.13338487D+04    0.0181081    0.0000136  EM
+             11 -0.13338457D+04    0.0030067    0.0000023  EM
+             12 -0.13338446D+04    0.0010688    0.0000008  EM
+             13 -0.13338443D+04    0.0003868    0.0000003  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18843425D+04    0.0000000    0.0000000  EM
+              2 -0.15557254D+04  328.6171840    0.1743935  EM
+              3 -0.14959913D+04   59.7340746    0.0383963  EM
+              4 -0.14264064D+04   69.5848965    0.0465142  EM
+              5 -0.13791447D+04   47.2617154    0.0331334  EM
+              6 -0.13512539D+04   27.8907618    0.0202232  EM
+              7 -0.13382894D+04   12.9645496    0.0095945  EM
+              8 -0.13343686D+04    3.9207550    0.0029297  EM
+              9 -0.13338895D+04    0.4790849    0.0003590  EM
+             10 -0.13338572D+04    0.0322775    0.0000242  EM
+             11 -0.13338485D+04    0.0087189    0.0000065  EM
+             12 -0.13338456D+04    0.0029596    0.0000022  EM
+             13 -0.13338446D+04    0.0010094    0.0000008  EM
+             14 -0.13338442D+04    0.0003452    0.0000003  EM
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              T             T_SE
+              ________      ________
+ 1              0.000         0.548
+
+
+           Covariances
+              T             T_SE
+              ________      ________
+ T              0.375
+ T_SE           0.023         0.002
+
+
+           Correlations
+              T             T_SE
+              ________      ________
+ T              1.000
+ T_SE           0.771         1.000
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    mplus-grm-11.fsc
+
+  Order and format of variables
+
+    V45            F10.3
+    V46            F10.3
+    V47            F10.3
+    ROWID          I6
+    T              F10.3
+    T_SE           F10.3
+
+  Save file format
+    3F10.3 I6 2F10.3
+
+  Save file record length    10000
+
+
+     Beginning Time:  16:36:08
+        Ending Time:  16:36:10
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

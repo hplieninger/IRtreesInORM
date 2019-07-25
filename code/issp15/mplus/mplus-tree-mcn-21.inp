@@ -1,0 +1,52 @@
+TITLE:
+  SLOVENIA
+  Tree Model
+  mplus-tree-mcn-21
+  #Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
+  Items:        v45 v46 v47
+  pseudoitem1:  - 0 1 0 -
+  pseudoitem2:  1 0 0 0 1
+  pseudoitem3:  0 0 - 1 1
+DATA:
+FILE = "mplus-tree-mcn-01.txt";
+ 
+VARIABLE:
+ NAMES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47 rowid v45 v46 v47
+         country; 
+ IDVARIABLE = rowid;
+ MISSING=.;
+ CATEGORICAL = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+
+ USEVARIABLES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+
+ !CLASSES ctry (11);
+ !KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20 
+ !                   country = 21 country = 22 country = 23 country = 29
+ !                   country = 35 country = 37);
+ 
+ USEOBSERVATIONS = country == 29;
+ 
+ANALYSIS:
+ !TYPE = MIXTURE;
+ ALGORITHM = INTEGRATION EM;
+ STARTS = 10 4;
+ PROCESSORS = 2;
+ ESTIMATOR = MLR;
+ INTEGRATION = 15;
+ MITERATIONS = 1000;
+ !MCONVERGENCE = .01;
+ !LOGCRITERION = .01;
+ !RLOGCRITERION = .00001;
+ LINK = probit;
+
+MODEL: 
+ !%OVERALL% 
+  m BY m_v45@1 m_v46@1 m_v47@1;
+  e BY e_v45@1 e_v46@1 e_v47@1;
+  t BY t_v45@1 t_v46@1 t_v47@1;
+ 
+OUTPUT:
+STDYX TECH1 TECH4 TECH8;
+SAVEDATA:
+!FILE = mplus-tree-mcn-21.fsc;
+!SAVE = FSCORES;
