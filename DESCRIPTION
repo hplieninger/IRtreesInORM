@@ -1,0 +1,41 @@
+Package: IRtreesInORM
+Title: Research Compendium of a Manuscript on Item Response Tree Models
+Version: 0.1.0
+Authors@R: 
+    person(given = "Hansjörg",
+           family = "Plieninger",
+           role = c("aut", "cre"),
+           email = "plieninger@uni-mannheim.de")
+Description: This research compendium accompanies a paper submitted to 
+    Organizational Research Methods (ORM). It contains the code and data of the
+    simulation study. And it also contains all the code of the empirical example
+    on organizational commitment. Researchers may, for example, adapt the
+    provided Mplus code to their needs, or they may play around with the
+    simulation code.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.2),
+    ggplot2,
+    usethis
+Imports: 
+    dplyr,
+    ItemResponseTrees,
+    magrittr,
+    conflicted,
+    purrr,
+    car,
+    reshape2,
+    tibble,
+    MplusAutomation (>= 0.7),
+    tidyr (>= 0.8.3.9000)
+Suggests: 
+    haven,
+    here,
+    forcats,
+    MBESS,
+    extrafont,
+    stringr,
+    knitr
+RoxygenNote: 6.1.1
