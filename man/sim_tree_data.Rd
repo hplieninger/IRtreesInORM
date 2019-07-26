@@ -16,6 +16,13 @@ sim_tree_data(n = 200, items = 10, theta_vcov = NULL, betas = NULL,
 
 \item{betas}{Jx3 matrix with item parameters beta pertaining to the three
 dimensions (MRS, ERS, target trait).}
+
+\item{thetas}{Optional matrix. If provided, this will be used as the person
+parameters instead of generating them using \code{theta_vcov}. Must be
+either \code{NULL} or an NxP matrix.}
+
+\item{empirical}{logical. If true, mu and Sigma specify the empirical
+    not population mean and covariance matrix.}
 }
 \value{
 A list containing the generated matrix of responses \code{dat}, the

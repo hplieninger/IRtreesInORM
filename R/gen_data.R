@@ -3,12 +3,16 @@
 #' @param n Numeric. Number of participants.
 #' @param items Numeric. Number of items.
 #' @param theta_vcov Covariance matrix for MRS, ERS, and target trait.
-#' @param df_vcov
 #' @param betas Jx3 matrix with item parameters beta pertaining to the three
 #'   dimensions (MRS, ERS, target trait).
+#' @param thetas Optional matrix. If provided, this will be used as the person
+#'   parameters instead of generating them using \code{theta_vcov}. Must be
+#'   either \code{NULL} or an NxP matrix.
 #' @return A list containing the generated matrix of responses \code{dat}, the
 #'   generated person parameters \code{theta}, and the calculated response
 #'   probabilities \code{prob} among other things.
+#' @inheritParams MASS::mvrnorm
+#' @importFrom stats pnorm rmultinom
 #' @examples
 #' # generate data
 #' n <- 20; i <- 10

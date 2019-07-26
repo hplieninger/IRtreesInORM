@@ -4,3 +4,5 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 misc/
+code/
+figures/

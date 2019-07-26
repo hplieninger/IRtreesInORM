@@ -16,27 +16,29 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 3.2),
-    ggplot2,
-    usethis
+    R (>= 3.5),
+    ggplot2
 Imports: 
-    dplyr,
-    ItemResponseTrees,
-    magrittr,
-    conflicted,
-    purrr,
     car,
-    reshape2,
-    tibble,
-    MplusAutomation (>= 0.7),
-    tidyr (>= 0.8.3.9000)
-Suggests: 
-    haven,
+    checkmate,
+    conflicted,
+    dplyr,
     here,
-    forcats,
-    MBESS,
+    magrittr,
+    MASS,
+    MplusAutomation (>= 0.7),
+    purrr,
+    reshape2,
+    tidyr (>= 0.8.3.9000),
+    tibble,
+    usethis
+Suggests: 
     extrafont,
-    stringr,
+    forcats,
+    fs,
+    haven,
     knitr,
-    fs
+    MBESS,
+    stringr
+Remotes: hplieninger/ItemResponseTrees
 RoxygenNote: 6.1.1
