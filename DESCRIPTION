@@ -1,6 +1,6 @@
 Package: IRtreesInORM
 Title: Research Compendium of a Manuscript on Item Response Tree Models
-Version: 0.1.0
+Version: 0.3.0
 Authors@R: 
     person(given = "Hansjörg",
            family = "Plieninger",
