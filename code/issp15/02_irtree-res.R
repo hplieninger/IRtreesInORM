@@ -151,7 +151,7 @@ p1 <- ggplot(dat_mcn_gg2, aes(x = param, y = value, color = Country, shape = Cou
     facet_wrap(~ variable, ncol = 2, scales = "free_y") +
     scale_color_viridis_d(direction = -1) +
     scale_shape_manual(values = array(c(15:18), dim = 11)) +
-    labs(x = "Parameter", y = "Size") +
+    labs(x = "Parameter", y = "Estimate") +
     lims(y = c(0, NA)) +
     # ggthemes::theme_igray() +
     theme(panel.grid.major.y = element_line(linetype = 2, size = .6, color = "gray90"),
