@@ -16,10 +16,16 @@ knitr::opts_chunk$set(
 # IRtreesInORM
 
 This is the research compendium that accompanies the paper **Developing and Applying IR-Tree Models: Guidelines, Caveats, and an Extension to Multiple Groups**.
-Herein, documentation, data, and code is provided for both the simulation study and the empirical example.
+Herein, documentation and code is provided for the empirical example.
+Furthermore, a simulation study is reported.
 This compendium can be obtained from GitHub or OSF.
-Rerunning the analyses, especially those done in Mplus, should work out of the box.
-However, some code may work only after installing the repository/package, and this can be done using, for example, `devtools::install()`, `devtools::load_all()`, or `remotes::install_github()`.
+
+This compendium in the form of an R package is avaible on GitHub and OSF:
+
+- You can either access the files online, or you can download a copy of the compendium, for example, via `usethis::create_from_github("hplieninger/IRtreesInORM")`.
+- You may also install the R package to use the functions stored in `R/`.
+  - You can install your local copy via `devtools::load_all()` or `devtools::install()`.
+  - You can install directly from GitHub via `remotes::install_github("hplieninger/IRtreesInORM")`.
 
 ## Empirical Example
 
@@ -33,9 +39,11 @@ To do further analyses with these data, the following steps are needed:
 
 ## Simulation Study
 
+A simulation study was conducted to demonstrate that improper models (i.e., using incorrect pseudoitems) can lead to serious consequences and invalid conclusions.
 The data were simulated using the R script `code/simulation/01_generate-data.R`.
 A graphical overview of the generated items and their parameters can also be found in `figures/sim-study_items.pdf`.
-Further details can be found in the README file in `code/simulation/`
+Further details can be found in the README file in `code/simulation/`.
+The results are reported in a vignette stored in `doc/IRTreesInORM-Improper-Models.html`.
 
 ## Mplus Code
 

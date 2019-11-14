@@ -1,6 +1,6 @@
 Package: IRtreesInORM
-Title: Research Compendium of a Manuscript on Item Response Tree Models
-Version: 0.3.0
+Title: Research Compendium of a Paper on Item Response Tree Models
+Version: 1.0.0
 Authors@R: 
     person(given = "Hansjörg",
            family = "Plieninger",
@@ -29,7 +29,7 @@ Imports:
     MplusAutomation (>= 0.7),
     purrr,
     reshape2,
-    tidyr (>= 0.8.3.9000),
+    tidyr (>= 1.0.0),
     tibble,
     usethis
 Suggests: 
@@ -37,8 +37,13 @@ Suggests:
     forcats,
     fs,
     haven,
+    kableExtra,
     knitr,
     MBESS,
-    stringr
+    prettydoc,
+    stringr,
+    rmarkdown
 Remotes: hplieninger/ItemResponseTrees
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

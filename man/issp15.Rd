@@ -6,11 +6,11 @@
 \title{The data from ISSP 2015.}
 \format{A tibble/data frame with 51,668 rows and 443 columns:
 \describe{
-  \item{rowid}{Row number in the SPSS data file}
-  \item{country}{Country of respondent}
-  \item{v45}{I am willing to work harder than I have to in order to help the firm or organization I work for succeed.}
-  \item{v46}{I am proud to be working for my firm or organization.}
-  \item{v47}{I would turn down another job that offered quite a bit more pay in order to stay with this organization.}
+\item{rowid}{Row number in the SPSS data file}
+\item{country}{Country of respondent}
+\item{v45}{I am willing to work harder than I have to in order to help the firm or organization I work for succeed.}
+\item{v46}{I am proud to be working for my firm or organization.}
+\item{v47}{I would turn down another job that offered quite a bit more pay in order to stay with this organization.}
 }}
 \source{
 \url{http://dx.doi.org/10.4232/1.12848}

@@ -27,7 +27,7 @@
 #'   \item{v46}{I am proud to be working for my firm or organization.}
 #'   \item{v47}{I would turn down another job that offered quite a bit more pay in order to stay with this organization.}
 #' }
-#' @references ISSP Research Group. (2017). International Social Survey Programme: Work Orientations IV - ISSP 2015 [Data file Version 2.1.0].
+#' @references ISSP Research Group. (2017). International Social Survey Programme: Work Orientations IV - ISSP 2015 \[Data file Version 2.1.0\].
 #' @source \url{http://dx.doi.org/10.4232/1.12848}
 #' @usage data("issp15")
 "issp15"
@@ -44,3 +44,4 @@
 #' A tibble, where each of three rows contains the Mplus output in the column `output`.
 #'
 #' @usage data("sim_res")
+"sim_res"

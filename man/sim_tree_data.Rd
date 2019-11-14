@@ -26,8 +26,8 @@ either \code{NULL} or an NxP matrix.}
 }
 \value{
 A list containing the generated matrix of responses \code{dat}, the
-  generated person parameters \code{theta}, and the calculated response
-  probabilities \code{prob} among other things.
+generated person parameters \code{theta}, and the calculated response
+probabilities \code{prob} among other things.
 }
 \description{
 Generate Data for MCN Model
