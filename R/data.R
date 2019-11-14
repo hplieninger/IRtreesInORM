@@ -31,3 +31,16 @@
 #' @source \url{http://dx.doi.org/10.4232/1.12848}
 #' @usage data("issp15")
 "issp15"
+
+#' The generated data and parameters of the simulation study.
+#'
+#' A list containing the data `sim_data$dat` and the data-generating parameters.
+#'
+#' @usage data("sim_data")
+"sim_data"
+
+#' The Mplus output for the three models fitted in the simulation study.
+#'
+#' A tibble, where each of three rows contains the Mplus output in the column `output`.
+#'
+#' @usage data("sim_res")

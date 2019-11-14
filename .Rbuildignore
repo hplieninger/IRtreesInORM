@@ -6,3 +6,5 @@
 misc/
 code/
 figures/
+^doc$
+^Meta$
