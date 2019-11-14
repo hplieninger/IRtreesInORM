@@ -28,5 +28,6 @@ rsconnect/
 data/issp15.rda
 misc/
 inst/doc
-doc
+doc/*
+!doc/*.html
 Meta
