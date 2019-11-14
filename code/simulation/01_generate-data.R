@@ -21,18 +21,19 @@ i <- nrow(betas)
 N <- 10000
 
 set.seed(123)
-simdata <- sim_tree_data(items = i,
+sim_data <- sim_tree_data(items = i,
                     n = N,
                     betas = betas,
                     theta_vcov = Sig,
                     empirical = TRUE)
 
-save(betas, simdata, file = here("code/simulation/simulated-data.rda"))
+sim_data$probs <- NULL
 
+# usethis::use_data(sim_data)
 
 # Illustrate item parameters beta -----------------------------------------
 
-dat01 <- apply(simdata$dat, 2, function(x) prop.table(table(factor(x, 0:4, 1:5)))) %>%
+dat01 <- apply(sim_data$dat, 2, function(x) prop.table(table(factor(x, 0:4, 1:5)))) %>%
     reshape2::melt()
 
 dat01 %>%
@@ -99,7 +100,7 @@ dev.off()
 
 dirx <- "code/simulation/mplus/"
 
-dd_mcn <- do.call(cbind, rep(list(simdata$dat), 3))
+dd_mcn <- do.call(cbind, rep(list(sim_data$dat), 3))
 dd_mcn[, 1:i] <-
     apply(dd_mcn[, 1:i], 2,
           function(x)
@@ -118,7 +119,7 @@ write.table(dd_mcn, file = here(dirx, sprintf("data_MCN_N=%i_001.txt", N)),
 
 # Save data 'APP' model ---------------------------------------------------
 
-dd_app <- do.call(cbind, rep(list(simdata$dat), 3))
+dd_app <- do.call(cbind, rep(list(sim_data$dat), 3))
 dd_app[, 1:i] <-
     apply(dd_app[, 1:i], 2,
           function(x)
@@ -137,12 +138,12 @@ write.table(dd_app, file = here(dirx, sprintf("data_APP_N=%i_001.txt", N)),
 
 # Save data GRM -----------------------------------------------------------
 
-write.table(simdata$dat, file = here(dirx, sprintf("data_raw_N=%i_001.txt", N)),
+write.table(sim_data$dat, file = here(dirx, sprintf("data_raw_N=%i_001.txt", N)),
             row.names = FALSE, col.names = FALSE, na = "*")
 
 # Save data ECN model -----------------------------------------------------
 
-dd_ecn <- do.call(cbind, rep(list(simdata$dat), 3))
+dd_ecn <- do.call(cbind, rep(list(sim_data$dat), 3))
 dd_ecn[, 1:i] <-
     apply(dd_ecn[, 1:i], 2,
           function(x)
