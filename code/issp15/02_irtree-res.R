@@ -11,6 +11,7 @@ library("extrafont")
 library("dplyr")
 conflict_prefer("filter", "dplyr")
 library("ggbeeswarm")
+library("ItemResponseTrees")
 
 # Model definition --------------------------------------------------------
 
@@ -58,7 +59,7 @@ GRM
 
 # Venezuela ---------------------------------------------------------------
 
-tmp1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-11.out"))
+tmp1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-111.out"))
 
 tmp1$summaries[c("AIC", "BIC")] %>%
     round(-1) %>%
@@ -67,22 +68,24 @@ tmp1$summaries[c("AIC", "BIC")] %>%
     # clipr::write_clip() %>%
     identity()
 
-res_1 <- ItemResponseTrees::extract_mplus_output(tmp1, m1)
+res_1 <- extract_mplus_output(tmp1, irtree_model(m1))
 
 ### Item difficulties beta ###
 round(colMeans(res_1$item$beta[, 2:4]), 2)
 round(pnorm(-colMeans(res_1$item$beta[, 2:4])), 2)
 
 ### Latent variances/SDs ###
-round(sqrt(diag(res_1$sigma)), 2)
 
-round(pnorm(sqrt(res_1$sigma[2, 2]) - mean(res_1$item$beta$E)), 2)
-round(pnorm(-sqrt(res_1$sigma[2, 2]) - mean(res_1$item$beta$E)), 2)
+filter(res_1$parameters$unstandardized, paramHeader == "Variances") %T>%
+    print %>%
+    pull(est) %>%
+    sqrt %>%
+    round(2)
 
 ### Latent correlations ###
-round(res_1$cormat, 2)
+filter(res_1$parameters$stdyx.standardized, grepl("WITH$", paramHeader))
 
-tmp2 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-11.out"))
+tmp2 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-111.out"))
 
 tmp2$summaries[c("AIC", "BIC")] %>%
     round(-1) %>%
@@ -91,17 +94,17 @@ tmp2$summaries[c("AIC", "BIC")] %>%
     # clipr::write_clip() %>%
     identity()
 
-res_2 <- ItemResponseTrees::extract_mplus_output(tmp2, model = m3)
+res_2 <- extract_mplus_output(tmp2, irtree_model(m3))
 
 ### Comparison of theta_(target trait) across GRM and MCN ###
 
-round(cor(res_2$person$personpar_est[, 1], res_1$person$personpar_est$T), 2)
+round(cor(tmp2$savedata$T, tmp1$savedata$T), 2)
 
-plot(jitter(res_2$person$personpar_est[, 1], factor = 100),
-     jitter(res_1$person$personpar_est$T, factor = 100))
+plot(jitter(tmp2$savedata$T, factor = 100),
+     jitter(tmp1$savedata$T, factor = 100))
 abline(0, 1)
 
-(res_2$person$personpar_est[, 1] - res_1$person$personpar_est$T) %>%
+(tmp2$savedata$T - tmp1$savedata$T) %>%
     abs %>%
     mean %>%
     round(2)
@@ -111,7 +114,7 @@ abline(0, 1)
 
 # __IR-Tree ---------------------------------------------------------------
 
-mcn_mg_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-01.out"))
+mcn_mg_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-101.out"))
 
 mcn_mg_1$summaries[c("AIC", "BIC")] %>%
     round(-1) %>%
@@ -166,8 +169,8 @@ cairo_pdf(here("figures/latent-means-variances-01.pdf"), width = x, height = x/1
 p1
 dev.off()
 
-fs::file_copy(here("figures/latent-means-variances-01.pdf"),
-              here("../figures/latent-means-variances-01.pdf"), overwrite = TRUE)
+# fs::file_copy(here("figures/latent-means-variances-01.pdf"),
+#               here("../figures/latent-means-variances-01.pdf"), overwrite = TRUE)
 
 dat_mcn_gg1 %>%
     group_by(param) %>%
@@ -175,7 +178,7 @@ dat_mcn_gg1 %>%
 
 # __GRM -------------------------------------------------------------------
 
-grm_mg_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-01.out"))
+grm_mg_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-101.out"))
 
 grm_mg_1$summaries[c("AIC", "BIC")] %>%
     round(-1) %>%
@@ -230,28 +233,28 @@ cairo_pdf(here("figures/latent-means-scatter-01.pdf"), width = x, height = x/1.6
 p2
 dev.off()
 
-fs::file_copy(here("figures/latent-means-scatter-01.pdf"),
-              here("../figures/latent-means-scatter-01.pdf"), overwrite = TRUE)
+# fs::file_copy(here("figures/latent-means-scatter-01.pdf"),
+#               here("../figures/latent-means-scatter-01.pdf"), overwrite = TRUE)
 
 cor(dat_mdls_1$absMean_grm, dat_mdls_1$absMean_mcn, method = "kendall")
 
 # Slovenia ----------------------------------------------------------------
 
-slo_grm_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-21.out"))
-slo_mcn_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-21.out"))
-slo_app_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-app-21.out"))
-
-list1 <- list(
-    grm = slo_grm_1,
-    mcn = slo_mcn_1,
-    app = slo_app_1
-)
-
-purrr::map(list1, ~ .x[["summaries"]][c("AIC", "BIC")]) %>%
-    purrr::map(round, -1) %>%
-    purrr::map(prettyNum, big.mark = ",") %>%
-    purrr::map(~ paste(names(.x), .x, sep = " = ", collapse = " and ")) %>%
-    # clipr::write_clip() %>%
-    identity()
+# slo_grm_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-grm-21.out"))
+# slo_mcn_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-mcn-21.out"))
+# slo_app_1 <- MplusAutomation::readModels(here("code/issp15/mplus/mplus-tree-app-21.out"))
+#
+# list1 <- list(
+#     grm = slo_grm_1,
+#     mcn = slo_mcn_1,
+#     app = slo_app_1
+# )
+#
+# purrr::map(list1, ~ .x[["summaries"]][c("AIC", "BIC")]) %>%
+#     purrr::map(round, -1) %>%
+#     purrr::map(prettyNum, big.mark = ",") %>%
+#     purrr::map(~ paste(names(.x), .x, sep = " = ", collapse = " and ")) %>%
+#     # clipr::write_clip() %>%
+#     identity()
 
 sessioninfo::session_info()
