@@ -36,3 +36,15 @@ id_subset <- issp15 %>%
 #     filter(country %in% ctrs)
 
 usethis::use_data(ctrs, id_subset)
+
+# External file of included cases -----------------------------------------
+
+options("scipen" = 10)
+
+issp15 %>%
+    filter(rowid %in% id_subset) %>%
+    select(rowid, CASEID, country) %>%
+    write.csv(file = here::here("misc/subsample.txt"),
+              row.names = FALSE, na = "", fileEncoding = "UTF-8")
+
+options("scipen" = 0)
