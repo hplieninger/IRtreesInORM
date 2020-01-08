@@ -1,6 +1,6 @@
 TITLE:
   Tree Model
-  mplus-tree-boeck-01
+  mplus-tree-mcn-01
   #Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
   Items:        v45 v46 v47
   pseudoitem1:  - 0 1 0 -
@@ -17,19 +17,18 @@ VARIABLE:
  CATEGORICAL = v45 v46 v47;
 
  USEVARIABLES = v45 v46 v47;
+ 
+ USEOBS = rowid NE 47774 AND rowid NE 47775;
 
- !CLASSES ctry (11);
- !KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20 
- !                   country = 21 country = 22 country = 23 country = 29
- !                   country = 35 country = 37);
- 
- USEOBSERVATIONS = country == 37;
- 
+ CLASSES ctry (11);
+ KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20 
+                    country = 21 country = 22 country = 23 country = 29
+                    country = 35 country = 37);
 ANALYSIS:
- !TYPE = MIXTURE;
+ TYPE = MIXTURE;
  ALGORITHM = INTEGRATION EM;
- STARTS = 10 4;
- PROCESSORS = 2;
+ STARTS = 50 10;
+ PROCESSORS = 5;
  ESTIMATOR = MLR;
  INTEGRATION = 15;
  MITERATIONS = 1000;
@@ -39,11 +38,55 @@ ANALYSIS:
  LINK = probit;
 
 MODEL: 
-
+ %OVERALL% 
   t BY v45@1 v46@1 v47@1;
+
+ %ctry#1% 
+ [t@0];
+ t;
+
+ %ctry#2% 
+ [t];
+ t;
+
+ %ctry#3% 
+ [t];
+ t;
+
+ %ctry#4% 
+ [t];
+ t;
+
+ %ctry#5% 
+ [t];
+ t;
+ 
+ %ctry#6%
+ [t];
+ t;
+
+ %ctry#7%
+ [t];
+ t;
+
+ %ctry#8%
+ [t];
+ t;
+
+ %ctry#9%
+ [t];
+ t;
+
+ %ctry#10%
+ [t];
+ t;
+
+ %ctry#11%
+ [t];
+ t;
  
 OUTPUT:
 STDYX TECH1 TECH4 TECH8;
 SAVEDATA:
-FILE = mplus-grm-11.fsc;
+FILE = mplus-grm-01.fsc;
 SAVE = FSCORES;

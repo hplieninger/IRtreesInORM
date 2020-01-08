@@ -22,9 +22,9 @@ m1 <- "
 # MCN model
 
 IRT:
-t  BY v45@1, v46@1, v47@1;
-e  BY v45@1, v46@1, v47@1;
 m  BY v45@1, v46@1, v47@1;
+e  BY v45@1, v46@1, v47@1;
+t  BY v45@1, v46@1, v47@1;
 
 # Subtree:
 # t = t1 + t2
@@ -90,13 +90,14 @@ Class:
 GRM
 "
 
-# model <- tree_model(m1)
+model1 <- irtree_model(m1)
 
 dat_1 %>%
     mutate_at("country", as.numeric) %>%
     as.data.frame() %>%
-    ItemResponseTrees::fit_tree_mplus(data = ., model = m1, file_name = "mplus-tree-boeck-01",
-                                      dir = "code/issp15/mplus", run = F, overwrite = T)
+    ItemResponseTrees::fit(model1, data = ., engine = "mplus",
+                           file = "code/issp15/mplus/mplus-tree-mcn-01",
+                           run = FALSE, overwrite = TRUE)
 
 
 # MCN2 Model --------------------------------------------------------------

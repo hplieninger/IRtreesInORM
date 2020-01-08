@@ -14,9 +14,11 @@ VARIABLE:
          country; 
  IDVARIABLE = rowid;
  MISSING=.;
- CATEGORICAL = v45 v46 v47;
+ CATEGORICAL = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
 
- USEVARIABLES = v45 v46 v47;
+ USEVARIABLES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+ 
+ USEOBS = rowid NE 47774 AND rowid NE 47775;
 
  CLASSES ctry (11);
  KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20 
@@ -37,54 +39,81 @@ ANALYSIS:
 
 MODEL: 
  %OVERALL% 
-  t BY v45@1 v46@1 v47@1;
+  m BY m_v45@1 m_v46@1 m_v47@1;
+  e BY e_v45@1 e_v46@1 e_v47@1;
+  t BY t_v45@1 t_v46@1 t_v47@1;
+
+  ![ ctry#1@0 ];
+  ![ ctry#2@0 ];
 
  %ctry#1% 
- [t@0];
- t;
+ [t@0, e@0, m@0];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#2% 
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#3% 
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#4% 
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#5% 
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
  
  %ctry#6%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#7%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#8%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#9%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#10%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
 
  %ctry#11%
- [t];
- t;
+ [t, e, m];
+ t, e, m;
+ t WITH e, m;
+ e WITH m;
  
 OUTPUT:
 STDYX TECH1 TECH4 TECH8;
 SAVEDATA:
-FILE = mplus-grm-01.fsc;
+FILE = mplus-tree-mcn-01.fsc;
 SAVE = FSCORES;

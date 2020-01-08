@@ -1,7 +1,6 @@
 TITLE:
-  SLOVENIA
   Tree Model
-  mplus-tree-mcn-21
+  mplus-tree-boeck-01
   #Parameters:  N = 18182; J = 3; K = 5; P = 3; S = 3;
   Items:        v45 v46 v47
   pseudoitem1:  - 0 1 0 -
@@ -15,16 +14,16 @@ VARIABLE:
          country; 
  IDVARIABLE = rowid;
  MISSING=.;
- CATEGORICAL = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+ CATEGORICAL = v45 v46 v47;
 
- USEVARIABLES = m_v45 m_v46 m_v47 e_v45 e_v46 e_v47 t_v45 t_v46 t_v47;
+ USEVARIABLES = v45 v46 v47;
 
  !CLASSES ctry (11);
  !KNOWNCLASS = ctry (country = 1 country = 5 country = 7 country = 15 country = 20 
  !                   country = 21 country = 22 country = 23 country = 29
  !                   country = 35 country = 37);
  
- USEOBSERVATIONS = country == 29;
+ USEOBSERVATIONS = country == 37 AND rowid NE 47774 AND rowid NE 47775;
  
 ANALYSIS:
  !TYPE = MIXTURE;
@@ -40,13 +39,11 @@ ANALYSIS:
  LINK = probit;
 
 MODEL: 
- !%OVERALL% 
-  m BY m_v45@1 m_v46@1 m_v47@1;
-  e BY e_v45@1 e_v46@1 e_v47@1;
-  t BY t_v45@1 t_v46@1 t_v47@1;
+
+  t BY v45@1 v46@1 v47@1;
  
 OUTPUT:
 STDYX TECH1 TECH4 TECH8;
 SAVEDATA:
-!FILE = mplus-tree-mcn-21.fsc;
-!SAVE = FSCORES;
+FILE = mplus-grm-11.fsc;
+SAVE = FSCORES;
