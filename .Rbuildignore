@@ -6,5 +6,5 @@
 misc/
 code/
 figures/
-^doc$
-^Meta$
+simulation-study/
+vignettes/
