@@ -4,7 +4,9 @@
 \name{id_subset}
 \alias{id_subset}
 \title{RowIDs of 500 randomly selected respondents per country.}
-\format{An object of class \code{integer} of length 18182.}
+\format{
+An object of class \code{integer} of length 18182.
+}
 \usage{
 data("id_subset")
 }

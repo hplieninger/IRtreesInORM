@@ -4,7 +4,9 @@
 \name{sim_data}
 \alias{sim_data}
 \title{The generated data and parameters of the simulation study.}
-\format{An object of class \code{list} of length 7.}
+\format{
+An object of class \code{list} of length 7.
+}
 \usage{
 data("sim_data")
 }

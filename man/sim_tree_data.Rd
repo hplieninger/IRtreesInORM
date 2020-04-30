@@ -4,8 +4,14 @@
 \alias{sim_tree_data}
 \title{Generate Data for MCN Model}
 \usage{
-sim_tree_data(n = 200, items = 10, theta_vcov = NULL, betas = NULL,
-  thetas = NULL, empirical = FALSE)
+sim_tree_data(
+  n = 200,
+  items = 10,
+  theta_vcov = NULL,
+  betas = NULL,
+  thetas = NULL,
+  empirical = FALSE
+)
 }
 \arguments{
 \item{n}{Numeric. Number of participants.}

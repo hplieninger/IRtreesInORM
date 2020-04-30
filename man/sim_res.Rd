@@ -4,7 +4,9 @@
 \name{sim_res}
 \alias{sim_res}
 \title{The Mplus output for the three models fitted in the simulation study.}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3 rows and 2 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3 rows and 2 columns.
+}
 \usage{
 data("sim_res")
 }

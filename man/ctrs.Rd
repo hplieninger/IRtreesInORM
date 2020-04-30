@@ -4,7 +4,9 @@
 \name{ctrs}
 \alias{ctrs}
 \title{Names of the 11 countries included in the multiple-group analyses.}
-\format{An object of class \code{character} of length 11.}
+\format{
+An object of class \code{character} of length 11.
+}
 \usage{
 data("ctrs")
 }
